@@ -222,8 +222,15 @@ sudo chmod 600 /opt/mosquitto/config/passwords
 sudo chown -R 1883:1883 /opt/mosquitto/{data,log}
 
 ```
+# Fix the not found problem
 
-  
+```bash
+sudo touch /opt/mosquitto/config/passwords
+sudo chown 1883:1883 /opt/mosquitto/config/passwords
+docker run --rm -v /opt/mosquitto/config:/mosquitto/config eclipse-mosquitto mosquitto_passwd -b /mosquitto/config/passwords pi 5vneql
+sudo chmod 600 /opt/mosquitto/config/passwords
+sudo chown -R 1883:1883 /opt/mosquitto/{data,log}
+```
 
 **Run Mosquitto:**
 
